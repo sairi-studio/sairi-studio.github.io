@@ -778,3 +778,8 @@ html.no-scroll,html.no-scroll body{overflow:hidden}
 .inapp__close{width:32px;height:32px;border-radius:50%;background:rgba(46,43,48,.08);font-size:18px;line-height:1}
 .inapp__ua{flex-basis:100%;margin:4px 0 0;font-size:10px;color:rgba(46,43,48,.6);word-break:break-all}
 html.has-inapp .dock{bottom:96px}
+
+.card__spin{position:absolute;left:50%;top:50%;z-index:3;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;opacity:0;pointer-events:none;transition:opacity .2s .15s;animation:spin .8s linear infinite;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+.card.is-buffering .card__spin{opacity:1}
+.card.is-paused .card__spin{opacity:0}
+@keyframes spin{to{transform:rotate(360deg)}}

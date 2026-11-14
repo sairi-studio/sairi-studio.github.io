@@ -58,6 +58,7 @@
       ${opts.no ? `<span class="card__no">${opts.no}</span>` : ""}
       <div class="card__media">
         <img src="${poster}" alt="" loading="lazy" onerror="this.style.opacity=0">
+        <span class="card__spin" aria-hidden="true"></span>
         <video muted playsinline loop preload="none" data-src="${media(w)}.mp4?b=${MAN[w.id]?.preview_bytes || 0}"></video>
         <div class="card__badges">${w.style === "live" ? `<span class="badge">実写</span>` : ""}</div>
         <span class="card__tc">${dur}</span>
@@ -77,7 +78,12 @@
   const vid = el => (sharedV && el.contains(sharedV)) ? sharedV : $("video", el);
   function playShared(el) {
     const own = $("video", el); if (!own) return;
-    if (!sharedV) { sharedV = document.createElement("video"); sharedV.loop = true; sharedV.playsInline = true; sharedV.setAttribute("playsinline", ""); sharedV.preload = "auto"; }
+    if (!sharedV) {
+      sharedV = document.createElement("video"); sharedV.loop = true; sharedV.playsInline = true; sharedV.setAttribute("playsinline", ""); sharedV.preload = "auto";
+      sharedV.addEventListener("waiting", () => current && current.classList.add("is-buffering"));
+      sharedV.addEventListener("playing", () => current && current.classList.remove("is-buffering"));
+    }
+    el.classList.add("is-buffering");
     if (sharedV.previousElementSibling !== own) own.after(sharedV);
     const src = own.dataset.src; if (sharedV.getAttribute("src") !== src) sharedV.src = src;
     sharedV.muted = !(soundOn && touched);
@@ -89,6 +95,8 @@
     if (current && current !== el) stop(current);
     if (!hoverable) return playShared(el);
     const v = $("video", el); if (!v) return;
+    el.classList.add("is-buffering");
+    if (!v._buf) { v._buf = 1; v.addEventListener("waiting", () => el.classList.add("is-buffering")); v.addEventListener("playing", () => el.classList.remove("is-buffering")); }
     if (!v.src) v.src = v.dataset.src;
     v.muted = hoverable ? !soundOn : !(soundOn && touched); v.volume = 0;
     v.play().then(() => { el.classList.add("is-playing"); fade(v, soundOn ? .9 : 0); }).catch(() => {
@@ -97,7 +105,7 @@
     current = el;
   }
   function stop(el, now) {
-    const v = vid(el); el.classList.remove("is-playing");
+    const v = vid(el); el.classList.remove("is-playing", "is-buffering");
     if (v) { if (now || !hoverable) { cancelAnimationFrame(v._f); v.pause(); } else fade(v, 0, () => v.pause()); }
     if (current === el) current = null;
   }

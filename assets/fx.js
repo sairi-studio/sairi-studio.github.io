@@ -57,6 +57,24 @@
     if (cur.classList.contains("is-play") && !cur.classList.contains("is-wait") && Math.random() < .5) talk("♪");
   }).observe(cur, { attributes: true, attributeFilter: ["class"] });
 
+    let rects = [], rectT = 0;
+  function avoidCards(x, y, now) {
+    if (now - rectT > 120) {
+      rectT = now;
+      rects = [...document.querySelectorAll(".card__media")].filter(m => !m.closest("#journey"))
+        .map(m => m.getBoundingClientRect()).filter(r => r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth);
+    }
+    const h = HS, half = W / 2;
+    for (let k = 0; k < 4; k++) {
+      const r = rects.find(r => x + half > r.left && x - half < r.right && y > r.top && y - h < r.bottom);
+      if (!r) break;
+      const below = r.bottom + h + 6, above = r.top - 6;
+      const okB = below <= innerHeight - 8, okA = above - h >= 60;
+      if (okB && (!okA || Math.abs(below - y) <= Math.abs(y - above))) y = below; else if (okA) y = above; else break;
+    }
+    return [x, y];
+  }
+
   let last = performance.now();
   (function loop(now) {
     requestAnimationFrame(loop);
@@ -64,8 +82,9 @@
     if (document.body.classList.contains("is-loading")) { box.style.opacity = 0; shadow.style.opacity = 0; return; }
     box.style.opacity = 1; shadow.style.opacity = 1;
 
-    const tx = Math.max(W / 2, Math.min(innerWidth - W / 2, target.x));
-    const ty = Math.max(150, Math.min(innerHeight - 8, target.y));
+    let tx = Math.max(W / 2, Math.min(innerWidth - W / 2, target.x));
+    let ty = Math.max(150, Math.min(innerHeight - 8, target.y));
+    if (touch) [tx, ty] = avoidCards(tx, ty, now);
     const dx = tx - p.x, dy = ty - p.y, dist = Math.hypot(dx, dy);
     const maxV = 10, acc = .9;
     if (dist > 6) {

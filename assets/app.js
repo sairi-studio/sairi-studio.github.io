@@ -121,7 +121,7 @@
   const autoObs = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { if (!e.target._userPaused) play(e.target); }
     else { stop(e.target, true); e.target._userPaused = false; e.target.classList.remove("is-paused"); }
-  }), { rootMargin: "-45% 0px -45% 0px" });
+  }), { rootMargin: "-46% -46% -46% -46%" });
 
     const st = $("#soundToggle");
   function setSound(on) {

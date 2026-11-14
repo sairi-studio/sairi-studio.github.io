@@ -752,3 +752,10 @@ body::after{opacity:.035}
 
 .only-touch{display:none!important}
 @media (hover:none){.only-hover{display:none!important}.howto li.only-touch{display:flex!important}span.only-touch{display:inline!important}}
+
+@media (hover:none){
+  .card:hover .card__media img,.card:hover .card__media video{transform:none}
+  .tile:hover,.lib-grid .tile:hover{transform:none}
+  .tl-btn:hover{transform:none}
+  .tile__more{display:none}
+}

@@ -734,3 +734,5 @@ body::after{opacity:.035}
 .tile--soon .card__media::after{display:none}
 .tile--soon span{font-size:12px;letter-spacing:.3em;color:var(--fg-3)}
 .shelf:has(.tile--soon) .shelf__nav{display:none}
+
+.tl__learn,.card__learn{white-space:pre-line}

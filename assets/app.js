@@ -111,13 +111,43 @@
       $(".card__media", el).insertAdjacentHTML("beforeend",
         `<span class="card__pause" aria-hidden="true">❚❚</span><div class="card__ctrl"><button type="button" class="card__resume" aria-label="もう一度再生">▶</button>${href(w) ? `<span class="card__go">X で本編を見る →</span>` : `<span class="card__go is-soon">COMING SOON</span>`}</div>`);
       el.addEventListener("click", e => {
-        if (e.target.closest(".card__go") && href(w)) return;
         e.preventDefault();
+        if (e.target.closest(".card__go")) { if (href(w)) openPost(href(w), w.title); return; }
         if (el.classList.contains("is-paused")) { el.classList.remove("is-paused"); el._userPaused = false; play(el); }
         else { stop(el, true); el.classList.add("is-paused"); el._userPaused = true; }
       });
     }
   }
+    let postBox = null;
+  function openPost(url, title) {
+    if (current) stop(current, true);
+    if (!postBox) {
+      postBox = document.createElement("div"); postBox.className = "post-modal";
+      postBox.innerHTML = `<div class="post-modal__bar"><b class="post-modal__title"></b><a class="post-modal__open" target="_blank" rel="noopener">X で開く ↗</a><button type="button" class="post-modal__close" aria-label="閉じる">×</button></div><div class="post-modal__body"></div>`;
+      document.body.append(postBox);
+      $(".post-modal__close", postBox).addEventListener("click", closePost);
+      postBox.addEventListener("click", e => { if (e.target === postBox) closePost(); });
+    }
+    $(".post-modal__title", postBox).textContent = title || "";
+    $(".post-modal__open", postBox).href = url;
+    const body = $(".post-modal__body", postBox);
+    const tw = url.replace("://x.com/", "://twitter.com/");
+    body.innerHTML = `<blockquote class="twitter-tweet" data-theme="dark" data-lang="ja" data-dnt="true"><a href="${tw}">${title || "X の投稿"}</a></blockquote><p class="post-modal__wait">読み込み中…</p>`;
+    postBox.classList.add("is-open"); document.documentElement.classList.add("no-scroll");
+    const load = () => window.twttr.widgets.load(body).then(() => { const w = $(".post-modal__wait", body); w && w.remove(); });
+    if (window.twttr && window.twttr.widgets) load();
+    else if (!openPost._s) {
+      openPost._s = document.createElement("script"); openPost._s.src = "https://platform.twitter.com/widgets.js"; openPost._s.async = true;
+      openPost._s.onload = () => window.twttr.ready(load); document.head.append(openPost._s);
+    } else window.twttr && window.twttr.ready && window.twttr.ready(load);
+  }
+  function closePost() {
+    if (!postBox) return;
+    postBox.classList.remove("is-open"); document.documentElement.classList.remove("no-scroll");
+    $(".post-modal__body", postBox).innerHTML = "";
+  }
+  addEventListener("keydown", e => { if (e.key === "Escape") closePost(); });
+
   let touched = false;
   addEventListener("touchstart", () => {
     touched = true;

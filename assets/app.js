@@ -77,7 +77,7 @@
     if (current && current !== el) stop(current);
     const v = $("video", el); if (!v) return;
     if (!v.src) v.src = v.dataset.src;
-    v.muted = !soundOn; v.volume = 0;
+    v.muted = hoverable ? !soundOn : !(soundOn && touched); v.volume = 0;
     v.play().then(() => { el.classList.add("is-playing"); fade(v, soundOn ? .9 : 0); }).catch(() => {
       v.muted = true; v.play().then(() => el.classList.add("is-playing")).catch(() => {});
     });
@@ -118,7 +118,15 @@
       });
     }
   }
+  let touched = false;
+  addEventListener("touchstart", () => {
+    touched = true;
+    if (current && soundOn) { const v = $("video", current); if (v && v.muted) { v.muted = false; v.volume = .9; } }
+  }, { passive: true, capture: true });
+  const retry = () => { if (hoverable) return; $$(".card.is-center").forEach(c => { const v = $("video", c); if (!c._userPaused && (!v || v.paused)) play(c); }); };
+  ["touchend", "scroll"].forEach(ev => addEventListener(ev, () => { clearTimeout(retry._t); retry._t = setTimeout(retry, 250); }, { passive: true, capture: true }));
   const autoObs = new IntersectionObserver(es => es.forEach(e => {
+    e.target.classList.toggle("is-center", e.isIntersecting);
     if (e.isIntersecting) { if (!e.target._userPaused) play(e.target); }
     else { stop(e.target, true); e.target._userPaused = false; e.target.classList.remove("is-paused"); }
   }), { rootMargin: "-46% -46% -46% -46%" });

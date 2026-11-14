@@ -73,8 +73,21 @@
   }
 
     let current = null;
+  let sharedV = null;
+  const vid = el => (sharedV && el.contains(sharedV)) ? sharedV : $("video", el);
+  function playShared(el) {
+    const own = $("video", el); if (!own) return;
+    if (!sharedV) { sharedV = document.createElement("video"); sharedV.loop = true; sharedV.playsInline = true; sharedV.setAttribute("playsinline", ""); sharedV.preload = "auto"; }
+    if (sharedV.previousElementSibling !== own) own.after(sharedV);
+    const src = own.dataset.src; if (sharedV.getAttribute("src") !== src) sharedV.src = src;
+    sharedV.muted = !(soundOn && touched);
+    const ok = () => el.classList.add("is-playing");
+    sharedV.play().then(ok).catch(() => { sharedV.muted = true; sharedV.play().then(ok).catch(() => {}); });
+    current = el;
+  }
   function play(el) {
     if (current && current !== el) stop(current);
+    if (!hoverable) return playShared(el);
     const v = $("video", el); if (!v) return;
     if (!v.src) v.src = v.dataset.src;
     v.muted = hoverable ? !soundOn : !(soundOn && touched); v.volume = 0;
@@ -84,12 +97,12 @@
     current = el;
   }
   function stop(el, now) {
-    const v = $("video", el); el.classList.remove("is-playing");
+    const v = vid(el); el.classList.remove("is-playing");
     if (v) { if (now || !hoverable) { cancelAnimationFrame(v._f); v.pause(); } else fade(v, 0, () => v.pause()); }
     if (current === el) current = null;
   }
   function unload(el) {
-    const v = $("video", el); if (!v || !v.getAttribute("src")) return;
+    const v = vid(el); if (!v || !v.getAttribute("src")) return;
     v.pause(); v.removeAttribute("src"); try { v.load(); } catch (e) {}
   }
   function fade(v, to, done) {
@@ -155,13 +168,13 @@
   let touched = false;
   addEventListener("touchstart", () => {
     touched = true;
-    if (current && soundOn) { const v = $("video", current); if (v && v.muted) { v.muted = false; v.volume = .9; } }
+    if (current && soundOn) { const v = vid(current); if (v) { if (v.muted) v.muted = false; if (v.paused && !current._userPaused) v.play().catch(() => {}); } }
   }, { passive: true, capture: true });
   const retry = () => {
     if (hoverable) return;
     const c = $$(".card.is-center").filter(x => x.isConnected && !x._userPaused).pop(); if (!c) return;
     $$(".card.is-playing").forEach(x => { if (x !== c) stop(x, true); });
-    const v = $("video", c); if (!v || v.paused) play(c);
+    const v = vid(c); if (!v || v.paused || !c.classList.contains("is-playing")) play(c);
   };
   ["touchend", "scroll"].forEach(ev => addEventListener(ev, () => { clearTimeout(retry._t); retry._t = setTimeout(retry, 250); }, { passive: true, capture: true }));
   const autoObs = new IntersectionObserver(es => es.forEach(e => {
@@ -176,7 +189,7 @@
   function setSound(on) {
     soundOn = on;
     if (st) { st.setAttribute("aria-pressed", on); $(".lbl", st).textContent = on ? "SOUND ON" : "SOUND OFF"; }
-    if (current) { const v = $("video", current); v.muted = !on; fade(v, on ? .9 : 0); }
+    if (current) { const v = vid(current); v.muted = !on; fade(v, on ? .9 : 0); }
     if (heroV) heroV.muted = true;
   }
   st && st.addEventListener("click", () => setSound(!soundOn));
@@ -184,7 +197,7 @@
   if (isBiz || saved) setTimeout(() => setSound(saved ? saved === "on" : true));
   const _set = setSound;
   setSound = on => { _set(on); try { sessionStorage.setItem("sound", on ? "on" : "off"); } catch (e) {} };
-  const unlock = () => { if (soundOn && current) { const v = $("video", current); if (v && v.muted) { v.muted = false; fade(v, .9); } } };
+  const unlock = () => { if (soundOn && current) { const v = vid(current); if (v && v.muted) { v.muted = false; fade(v, .9); } } };
   addEventListener("pointerdown", unlock, true); addEventListener("keydown", unlock, true);
 
     const cur = $("#cursor");

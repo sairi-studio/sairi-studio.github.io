@@ -88,6 +88,10 @@
     if (v) { if (now || !hoverable) { cancelAnimationFrame(v._f); v.pause(); } else fade(v, 0, () => v.pause()); }
     if (current === el) current = null;
   }
+  function unload(el) {
+    const v = $("video", el); if (!v || !v.getAttribute("src")) return;
+    v.pause(); v.removeAttribute("src"); try { v.load(); } catch (e) {}
+  }
   function fade(v, to, done) {
     cancelAnimationFrame(v._f);
     let n = 0;
@@ -153,12 +157,19 @@
     touched = true;
     if (current && soundOn) { const v = $("video", current); if (v && v.muted) { v.muted = false; v.volume = .9; } }
   }, { passive: true, capture: true });
-  const retry = () => { if (hoverable) return; $$(".card.is-center").forEach(c => { const v = $("video", c); if (!c._userPaused && (!v || v.paused)) play(c); }); };
+  const retry = () => {
+    if (hoverable) return;
+    const c = $$(".card.is-center").filter(x => x.isConnected && !x._userPaused).pop(); if (!c) return;
+    $$(".card.is-playing").forEach(x => { if (x !== c) stop(x, true); });
+    const v = $("video", c); if (!v || v.paused) play(c);
+  };
   ["touchend", "scroll"].forEach(ev => addEventListener(ev, () => { clearTimeout(retry._t); retry._t = setTimeout(retry, 250); }, { passive: true, capture: true }));
   const autoObs = new IntersectionObserver(es => es.forEach(e => {
-    e.target.classList.toggle("is-center", e.isIntersecting);
-    if (e.isIntersecting) { if (!e.target._userPaused) play(e.target); }
-    else { stop(e.target, true); e.target._userPaused = false; e.target.classList.remove("is-paused"); }
+    const el = e.target;
+    el.classList.toggle("is-center", e.isIntersecting);
+    clearTimeout(el._t);
+    if (e.isIntersecting) { el._t = setTimeout(() => { if (el.isConnected && el.classList.contains("is-center") && !el._userPaused) play(el); }, 350); }
+    else { stop(el, true); unload(el); el._userPaused = false; el.classList.remove("is-paused"); }
   }), { rootMargin: "-46% -46% -46% -46%" });
 
     const st = $("#soundToggle");
@@ -269,6 +280,7 @@
   function renderLib(tabKey) {
     if (!lib) return;
     const tab = TABS.find(t => t.k === tabKey) || TABS[0];
+    $$(".card", lib).forEach(c => { autoObs.unobserve(c); clearTimeout(c._t); stop(c, true); unload(c); });
     lib.innerHTML = "";
     const newest = (a, b) => pd(b).localeCompare(pd(a));
     if (tabKey !== "all") {

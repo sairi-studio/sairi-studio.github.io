@@ -770,3 +770,11 @@ body::after{opacity:.035}
 .post-modal__body .twitter-tweet{margin:0 auto!important}
 .post-modal__wait{color:rgba(255,240,246,.6);font-size:13px;margin-top:30px}
 html.no-scroll,html.no-scroll body{overflow:hidden}
+
+.inapp{position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:110;background:#FFF4F8;color:#2E2B30;border:1px solid rgba(229,103,154,.4);border-radius:14px;box-shadow:0 12px 30px rgba(46,43,48,.25);padding:12px 12px 12px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.inapp__text{margin:0;flex:1 1 200px;font-size:13px;line-height:1.6;font-weight:700}
+.inapp__btns{display:flex;align-items:center;gap:8px}
+.inapp__btn{background:var(--pink);color:#fff;font-size:12px;font-weight:700;padding:9px 14px;border-radius:999px;white-space:nowrap}
+.inapp__close{width:32px;height:32px;border-radius:50%;background:rgba(46,43,48,.08);font-size:18px;line-height:1}
+.inapp__ua{flex-basis:100%;margin:4px 0 0;font-size:10px;color:rgba(46,43,48,.6);word-break:break-all}
+html.has-inapp .dock{bottom:96px}

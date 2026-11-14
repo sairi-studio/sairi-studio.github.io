@@ -13,6 +13,31 @@
     addEventListener("resize", check); setTimeout(check, 300);
   }
 
+    (() => {
+    const ua = navigator.userAgent || "";
+    const showUA = /[?&]ua\b/.test(location.search);
+    const inApp = /Twitter|TwitterAndroid|\bX\/\d|FBAN|FBAV|Instagram|Line\/|BytedanceWebview|musical_ly|TikTok/i.test(ua);
+    let closed = false; try { closed = sessionStorage.getItem("inapp-closed") === "1"; } catch (e) {}
+    if (!(inApp && !closed) && !showUA) return;
+    const android = /Android/i.test(ua);
+    const url = location.origin + location.pathname;
+    const bar = document.createElement("div"); bar.className = "inapp";
+    bar.innerHTML = `<p class="inapp__text">${android ? "Chrome で開くと、動画を快適に見られます。" : "右上の「…」から「ブラウザで開く」を選ぶと、動画を快適に見られます。"}</p>
+      <div class="inapp__btns">${android
+        ? `<a class="inapp__btn" href="intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end">Chrome で開く</a>`
+        : `<button type="button" class="inapp__btn" data-copy>リンクをコピー</button>`}
+      <button type="button" class="inapp__close" aria-label="閉じる">×</button></div>
+      ${showUA ? `<p class="inapp__ua">${inApp ? "アプリの中と判定" : "ふつうのブラウザと判定"}：${ua.replace(/</g, "&lt;")}</p>` : ""}`;
+    document.body.append(bar);
+    document.documentElement.classList.add("has-inapp");
+    bar.querySelector(".inapp__close").addEventListener("click", () => { bar.remove(); document.documentElement.classList.remove("has-inapp"); try { sessionStorage.setItem("inapp-closed", "1"); } catch (e) {} });
+    const cp = bar.querySelector("[data-copy]");
+    cp && cp.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(url); cp.textContent = "コピーしました"; }
+      catch (e) { prompt("このリンクをコピーして、Safari に貼ってください", url); }
+    });
+  })();
+
     const box = $(".chibi"), shadow = $(".chibi__shadow");
   if (!box || reduce) return;
   const img = box.querySelector("img"), say = box.querySelector(".chibi__say");

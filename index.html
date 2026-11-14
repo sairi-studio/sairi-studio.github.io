@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=55">
+<link rel="stylesheet" href="assets/style.css?v=57">
 </head>
 <body class="is-loading">
 
@@ -38,7 +38,7 @@
   </div>
   <div class="slate__enter">
     <button class="btn-enter" data-sound="on">作品を見る<span class="arr">→</span></button>
-    <p class="slate__hint">ミュージックビデオ・オリジナルアニメ・ショート動画をまとめたページです。<br>作品にカーソルを重ねると、音付きでその場で流れます。</p>
+    <p class="slate__hint">ミュージックビデオ・オリジナルアニメ・ショート動画をまとめたページです。<br><span class="only-hover">作品にカーソルを重ねると、音付きでその場で流れます。</span><span class="only-touch">画面の真ん中に来た作品が、その場で流れます。</span></p>
   </div>
 </div>
 
@@ -93,8 +93,10 @@
       <h2 class="sec__title">ピックアップ5選<em>Pick Up 5</em></h2>
     </div>
     <ul class="howto">
-      <li><b>カーソルを重ねる</b>円が一周したら（1秒）、数秒だけ音付きで流れます</li>
-      <li><b>クリック</b>X の投稿が開き、本編を最後まで見られます</li>
+      <li class="only-hover"><b>カーソルを重ねる</b>円が一周したら（1秒）、数秒だけ音付きで流れます</li>
+      <li class="only-hover"><b>クリック</b>X の投稿が開き、本編を最後まで見られます</li>
+      <li class="only-touch"><b>スクロール</b>画面の真ん中に来た作品が流れます</li>
+      <li class="only-touch"><b>タップ</b>止まって「X で本編を見る」が出ます</li>
     </ul>
     <div class="picks" id="picks"></div>
   </section>
@@ -199,12 +201,12 @@
   </div>
 </footer>
 
-<script src="data/site.js?v=55"></script>
-<script src="data/works.js?v=55"></script>
-<script src="data/journey.js?v=55"></script>
-<script src="assets/gl.js?v=55"></script>
-<script src="assets/water.js?v=55"></script>
-<script src="assets/app.js?v=55"></script>
-<script src="assets/fx.js?v=55"></script>
+<script src="data/site.js?v=57"></script>
+<script src="data/works.js?v=57"></script>
+<script src="data/journey.js?v=57"></script>
+<script src="assets/gl.js?v=57"></script>
+<script src="assets/water.js?v=57"></script>
+<script src="assets/app.js?v=57"></script>
+<script src="assets/fx.js?v=57"></script>
 </body>
 </html>

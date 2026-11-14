@@ -83,16 +83,17 @@
     });
     current = el;
   }
-  function stop(el) {
+  function stop(el, now) {
     const v = $("video", el); el.classList.remove("is-playing");
-    if (v) { fade(v, 0, () => v.pause()); }
+    if (v) { if (now || !hoverable) { cancelAnimationFrame(v._f); v.pause(); } else fade(v, 0, () => v.pause()); }
     if (current === el) current = null;
   }
   function fade(v, to, done) {
     cancelAnimationFrame(v._f);
+    let n = 0;
     const step = () => {
       v.volume = Math.max(0, Math.min(1, v.volume + (to > v.volume ? .06 : -.08)));
-      if (Math.abs(v.volume - to) > .05) v._f = requestAnimationFrame(step); else { v.volume = to; done && done(); }
+      if (Math.abs(v.volume - to) > .05 && ++n < 40) v._f = requestAnimationFrame(step); else { try { v.volume = to; } catch (e) {} done && done(); }
     };
     step();
   }
@@ -107,10 +108,19 @@
       el.addEventListener("mouseleave", () => { clearTimeout(el._wait); stop(el); setCursor(""); });
     } else {
       autoObs.observe(el);
+      $(".card__media", el).insertAdjacentHTML("beforeend",
+        `<span class="card__pause" aria-hidden="true">❚❚</span><div class="card__ctrl"><button type="button" class="card__resume" aria-label="もう一度再生">▶</button>${href(w) ? `<span class="card__go">X で本編を見る →</span>` : `<span class="card__go is-soon">COMING SOON</span>`}</div>`);
+      el.addEventListener("click", e => {
+        if (e.target.closest(".card__go") && href(w)) return;
+        e.preventDefault();
+        if (el.classList.contains("is-paused")) { el.classList.remove("is-paused"); el._userPaused = false; play(el); }
+        else { stop(el, true); el.classList.add("is-paused"); el._userPaused = true; }
+      });
     }
   }
   const autoObs = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) play(e.target); else stop(e.target);
+    if (e.isIntersecting) { if (!e.target._userPaused) play(e.target); }
+    else { stop(e.target, true); e.target._userPaused = false; e.target.classList.remove("is-paused"); }
   }), { rootMargin: "-45% 0px -45% 0px" });
 
     const st = $("#soundToggle");

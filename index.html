@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sairi — AI Video Portfolio</title>
+<meta name="description" content="2026年7月に動画生成AIを始めた映像作家のポートフォリオ。MV・オリジナルアニメと、1本ごとに何を学んだかの記録。">
+<meta property="og:title" content="Sairi — AI Video Portfolio">
+<meta property="og:description" content="世界観は、人と人とのあいだに生まれる。動画生成AIで作ったミュージックビデオ・オリジナルアニメ・ショート動画。">
+<meta property="og:image" content="media/ringo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=54">
+</head>
+<body class="is-loading">
+
+<div class="slate" id="slate" aria-hidden="false">
+  <div class="slate__board">
+    <div class="slate__stick" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="slate__body">
+      <div class="slate__id">
+        <div>
+          <p class="slate__kind mono">AI VIDEO PORTFOLIO</p>
+          <h1 class="slate__name js-name">Sairi</h1>
+        </div>
+        <img class="slate__icon" src="assets/icon.jpg" alt="Sairi のアイコン" width="88" height="88">
+      </div>
+      <div class="slate__grid">
+        <div><span class="k">WORKS</span><span class="v js-count">0</span></div>
+        <div><span class="k">SINCE</span><span class="v js-since-slate">2026.07</span></div>
+        <div><span class="k">LATEST</span><span class="v js-latest">—</span></div>
+      </div>
+      <div class="slate__tc"><span class="k">TC</span><span class="mono js-slate-tc">00:00:00:00</span></div>
+    </div>
+  </div>
+  <div class="slate__enter">
+    <button class="btn-enter" data-sound="on">作品を見る<span class="arr">→</span></button>
+    <p class="slate__hint">ミュージックビデオ・オリジナルアニメ・ショート動画をまとめたページです。<br>作品にカーソルを重ねると、音付きでその場で流れます。</p>
+  </div>
+</div>
+
+<header class="hud">
+  <a class="hud__brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span class="js-name">Sairi</span></a>
+  <nav class="hud__nav">
+    <a href="#highlights">実績</a>
+    <a href="#journey">学びの年表</a>
+    <a href="#about">自己紹介</a>
+    <a href="#works">作品一覧</a>
+  </nav>
+  <a class="hud__biz" href="business.html">企業の方へ<span>→</span></a>
+  <button class="hud__sound" id="soundToggle" aria-pressed="false"><span class="eq"><i></i><i></i><i></i><i></i></span><span class="lbl">SOUND OFF</span></button>
+</header>
+<div class="hud-tc mono" aria-hidden="true"><span class="js-tc">00:00:00:00</span><span class="hud-tc__sec js-sec">SC.01 — OPENING</span></div>
+
+<nav class="dock" id="dock" aria-label="ページ内の移動">
+  <a href="#top" class="dock__btn">↑ 一番上へ</a>
+  <button class="dock__btn dock__close" data-close>年表を閉じる</button>
+  <a href="#works" class="dock__btn is-main">作品一覧へ ↓</a>
+</nav>
+
+<div class="chibi__shadow" aria-hidden="true"></div>
+<div class="chibi" aria-hidden="true"><img src="assets/chibi/front.png" alt=""><span class="chibi__say"></span></div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><svg class="cursor__ring" viewBox="0 0 100 100"><circle class="cursor__track" cx="50" cy="50" r="47"/><circle class="cursor__meter" cx="50" cy="50" r="47"/></svg><span class="cursor__label"></span></div>
+
+<main id="top">
+
+  <section class="hero" data-sec="SC.01 — OPENING">
+    <canvas class="hero__gl" id="heroGL"></canvas>
+    <video class="hero__video" id="heroVideo" playsinline muted preload="auto" crossorigin="anonymous"></video>
+    <div class="hero__shade"></div>
+    <div class="hero__inner">
+      <p class="hero__kicker mono"><span class="js-role">AI Video Director</span> — since <span class="js-since">2026.07</span></p>
+      <h1 class="hero__title"><span class="split js-name">KusArt</span></h1>
+      <p class="hero__tag js-tagline"></p>
+    </div>
+    <div class="hero__reel" id="heroReel" aria-label="おすすめ作品"></div>
+    <a class="hero__scroll mono" href="#highlights">SCROLL<span></span></a>
+  </section>
+
+  <section class="sec" id="highlights" data-sec="SC.02 — HIGHLIGHTS">
+    <div class="sec__head">
+      <span class="sec__no mono">02</span>
+      <h2 class="sec__title">実績<em>Achievements</em></h2>
+    </div>
+    <div class="awards" id="awards"></div>
+
+    <div class="sec__head sec__head--sub">
+      <span class="sec__no mono">02.b</span>
+      <h2 class="sec__title">ピックアップ5選<em>Pick Up 5</em></h2>
+    </div>
+    <ul class="howto">
+      <li><b>カーソルを重ねる</b>円が一周したら（1秒）、数秒だけ音付きで流れます</li>
+      <li><b>クリック</b>X の投稿が開き、本編を最後まで見られます</li>
+    </ul>
+    <div class="picks" id="picks"></div>
+  </section>
+
+  <section class="sec journey" id="journey" data-sec="SC.03 — JOURNEY">
+    <div class="sec__head">
+      <span class="sec__no mono">03</span>
+      <h2 class="sec__title">学びの年表<em>Journey</em></h2>
+    </div>
+    <p class="journey__lead">動画生成AIをはじめてから、X に投稿してきた作品の歩みです。<br>一つひとつの作品には、意識して学ぼうとしたテーマがあります。動画生成AIでの成長の記録として、これから始める方の何かのきっかけになればうれしいです。</p>
+    <p class="journey__note">※ 学ぶために作った作品を選んで載せているため、すべての投稿は載せていません。</p>
+    <div class="tl-sum" id="tlSum">
+      <button class="tl-btn" id="tlToggle" aria-expanded="false" aria-controls="tlWrap">
+        <span class="tl-btn__strip" aria-hidden="true"></span>
+        <span class="tl-btn__text">
+          <span class="tl-btn__range mono"><span class="js-tl-from">2026.07</span> → <span class="js-tl-to">2026.11</span></span>
+          <b class="tl-btn__title"><span class="tl-toggle__open">成長記録を見る</span><span class="tl-toggle__close">年表を閉じる</span></b>
+          <small class="tl-btn__count mono"><b class="js-tl-count">0</b> / <span class="js-all-count">0</span> 作品</small>
+        </span>
+        <i class="tl-btn__icon" aria-hidden="true">＋</i>
+      </button>
+    </div>
+    <div class="tl-wrap" id="tlWrap">
+      <nav class="tl-nav" aria-label="年表の中の移動">
+        <button class="tl-nav__arrow" data-go="top" aria-label="年表の一番上へ">↑</button>
+        <button class="tl-nav__close" data-close>年表を<br>閉じる</button>
+        <button class="tl-nav__arrow" data-go="end" aria-label="年表の一番下へ">↓</button>
+      </nav>
+      <div class="tl" id="timeline">
+        <div class="tl__rail" aria-hidden="true"><i class="tl__fill"></i></div>
+      </div>
+      <div class="tl-end" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="sec about" id="about" data-sec="SC.04 — ABOUT">
+    <div class="sec__head">
+      <span class="sec__no mono">04</span>
+      <h2 class="sec__title">自己紹介<em>About</em></h2>
+    </div>
+    <div class="about__grid">
+      <div class="about__stats" id="stats"></div>
+      <div class="about__text">
+        <p class="about__lead js-tagline"></p>
+
+        <div class="about__block">
+          <p class="about__label">大事にしたいこと<span>Vision</span></p>
+          <p>世界観から創造するストーリーよりも、人間関係から生まれる世界観を作っていきたい。</p>
+        </div>
+
+        <div class="about__block">
+          <p class="about__label">作り方<span>Process</span></p>
+          <ol class="flow">
+            <li><b>トリートメント</b><span>企画・ストーリー・脚本・構成は、自分で考えます。</span></li>
+            <li><b>AI と一緒に作る</b><span>キャラクターデザイン・音楽・環境の画像・動画のプロンプトは、AI と一緒に作っていきます。</span></li>
+            <li class="is-key"><b>カット割り</b><span>カット割りは1枚1枚すべて自分で考えます。制作の中で一番楽しい時間です。</span></li>
+          </ol>
+        </div>
+
+        <div class="about__links">
+          <a class="pill is-ghost" href="business.html">お仕事の相談・案件実績 →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="follow">
+      <p class="follow__label mono">FOLLOW</p>
+      <div class="follow__grid" data-sns="big"></div>
+    </div>
+
+    <details class="making">
+      <summary><span class="mono">MAKING OF</span> このサイトの作り方</summary>
+      <div class="making__body">
+        <p>このサイトは、映像制作と同じ AI のチームで作っています。<b>Claude Code</b> が構成と設計とコードを書き、<b>Codex</b> が全作品から音ありのプレビューを切り出しました。</p>
+        <ol>
+          <li>作品の情報は1つのデータファイル。チャットで「おすすめを入れ替えて」と言うと、その並びが書き換わります。</li>
+          <li>トップの映像は WebGL のシェーダーで、マウスに合わせて色のずれと粒子を足しています。</li>
+          <li>右下のタイムコードは、ページのスクロール量を 24fps の映像の時間に置き換えたものです。</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <div class="cut" aria-hidden="true"><span class="mono">— CUT —</span></div>
+  <section class="library" id="works" data-sec="LIBRARY">
+    <div class="library__bar">
+      <h2 class="library__title">作品一覧<em>Library</em></h2>
+      <div class="library__tabs" id="libTabs" role="tablist"></div>
+    </div>
+    <div class="library__body" id="library"></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__big"><span class="js-name">Sairi</span></div>
+  <div class="sns-mini" data-sns="mini"></div>
+  <div class="foot__row mono">
+    <span>© 2026 <span class="js-name">Sairi</span></span>
+    <a href="business.html">For Business</a>
+    <span>END OF REEL — 00:00:00:00</span>
+  </div>
+</footer>
+
+<script src="data/site.js?v=54"></script>
+<script src="data/works.js?v=54"></script>
+<script src="data/journey.js?v=54"></script>
+<script src="assets/gl.js?v=54"></script>
+<script src="assets/water.js?v=54"></script>
+<script src="assets/app.js?v=54"></script>
+<script src="assets/fx.js?v=54"></script>
+</body>
+</html>

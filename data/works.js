@@ -1,0 +1,49 @@
+const XS = id => "https://x.com/sairin_hamumu/status/" + id;
+window.WORKS = [
+    { no:3,  id:"mitarai",    title:"御手洗ぼっち",        sub:"Short MV", genre:"mv",    date:"2026-07-07", postedAt:"2026-07-08", x:XS("2074827897718894719"), learned:"1本作ってみる" },
+  { no:4,  id:"fadeaway",   title:"fade away",          sub:"Short MV", genre:"mv",    date:"2026-07-20", postedAt:"2026-07-20", x:XS("2079180027091120599"), learned:"音ハメをしてみる" },
+  { no:7,  id:"suichuka",   title:"水中花",              sub:"Short MV", genre:"short", style:"live", date:"2026-08-02", postedAt:"2026-08-02", x:XS("2083765353671446917"), learned:"スタート・エンド方式" },
+  { no:9,  id:"animals", thumb:"media/thumbs/animals.jpg",    title:"Animal's",           sub:"Short MV", genre:"mv",    date:"2026-08-07", postedAt:"2026-08-08", x:XS("2086015453877645698"), learned:"演奏シンク" },
+  { no:15, id:"wbm", thumb:"media/thumbs/wbm.jpg",        title:"W.B.M",              sub:"Short MV", genre:"mv",    date:"2026-08-18", postedAt:"2026-08-18", x:XS("2089648784456478822"), learned:"ダンス映像を作る" },
+  { no:19, id:"firstpage", thumb:"media/thumbs/firstpage.jpg", style:"live",  title:"The First Page",     sub:"Short MV", genre:"mv",    date:"2026-08-26", postedAt:"2026-08-24", x:XS("2091821376894308402"), learned:"演奏シンク（実写版）" },
+  { no:34, id:"daijobanai", thumb:"media/thumbs/daijobanai.jpg", title:"だいじょばない",       sub:"MV",       genre:"mv",    date:"2026-09-22", postedAt:"2026-09-22", x:XS("2102234284409172266"), learned:"フル尺のミュージックビデオ" },
+  { no:35, id:"lasthome", thumb:"media/thumbs/lasthome.jpg",   title:"Last home",          sub:"Short MV", genre:"anime",    date:"2026-09-28", postedAt:"2026-09-27", x:XS("2104076667614560580"), learned:"ショート版のオリジナルアニメ" },
+  { no:50, id:"mousou", thumb:"media/thumbs/mousou.jpg",     title:"4号車5両目──妄想中",   sub:"MV",       genre:"mv",    date:"2026-11-03", postedAt:"2026-11-03", x:XS("2117629919039737883"), learned:"画像プロンプトの自動検品" },
+  { no:2,  id:"miyomi", lib:false,     title:"未読をありがとう",     sub:"Short MV", genre:"mv",    date:"2026-07-15", postedAt:"2026-06-21", x:XS("2068561883146436929"), journey:false },
+  { no:5,  id:"kirakira", lib:false,   title:"キラキラキャンディ",    sub:"Short MV", genre:"mv",    date:"2026-07-24", postedAt:"2026-07-24", x:XS("2080580232512487646"), journey:false },
+  { no:26, id:"giveaway", lib:false,   title:"Give away",          sub:"Sample",   genre:"mv",    date:"2026-09-05", postedAt:"2026-09-05", x:XS("2096174409656717473"), journey:false },
+
+    { no:12, id:"supercub", thumb:"media/thumbs/supercub.jpg",   title:"24km/h の散歩",       sub:"短編",      genre:"short", date:"2026-08-12", postedAt:"2026-08-13", x:XS("2087829302079619460"), learned:"何気ない動作の、細かい動きを作る" },
+  { no:14, id:"indoor",     title:"Indoor",             sub:"短編",      genre:"short", date:"2026-08-15", postedAt:"2026-08-15", x:XS("2088579079167750396"), learned:"ファンタジー映像と、魔法の映像を作る" },
+  { no:21, id:"bosschara",  title:"ボスキャラ登場",       sub:"PV",        genre:"short", date:"2026-08-28", postedAt:"2026-08-27", x:XS("2092955066500362697"), learned:"ファイナルファンタジーのような、3DCG 風のキャラクターを作ってみる" },
+  { no:36, id:"battle", thumb:"media/thumbs/battle.jpg", title:"戦闘シーン",          sub:"短編",      genre:"short", date:"2026-09-28", postedAt:"2026-09-28", x:XS("2104555087574233581"), learned:"戦闘シーン" },
+  { no:41, id:"bossbattle", thumb:"media/thumbs/bossbattle.jpg", title:"ボスは親友の俺が倒す",  sub:"短編",      genre:"short", date:"2026-10-12", postedAt:"2026-10-12", x:XS("2109476468518695364"), learned:"ストーリーとアクションを、ひと続きで見せる", tools:["Seedance 2.5"] },
+  { no:47, id:"ringo", thumb:"media/thumbs/ringo.jpg", showSub:true,      title:"リンゴ経済学",         sub:"60秒予告編", genre:"anime", date:"2026-10-26", postedAt:"2026-10-26", long:false, x:XS("2114679534377382114"), learned:"オリジナルアニメを作る（音楽・音量・音声重視）", tools:["Kling","MiniMax","Midjourney","Suno","Topaz"] },
+
+    { no:24, id:"ramen",      title:"我慢、できませんでした（韓国ラーメン）", sub:"ショート", genre:"short", date:"2026-08-30", postedAt:"2026-08-30", x:XS("2094035317221367847"), learned:"食事シーン" },
+  { no:25, id:"jinro",      title:"人狼ゲーム",           sub:"ショート",   genre:"short", date:"2026-08-31", postedAt:"2026-08-31", x:XS("2094381004668780572"), learned:"セリフの音声" },
+  { no:27, id:"hissatsu",   title:"双銃融合極彩螺旋終焉砲", sub:"必殺技コンテスト", genre:"short", date:"2026-09-07", postedAt:"2026-09-07", x:XS("2096897163083362717"), learned:"複数のアニメキャラクターによる会話" },
+  { no:51, id:"amethyst", lib:false, thumb:"media/thumbs/amethyst.jpg", journey:false,   title:"連休は、私がつくる。",   sub:"ショート",   genre:"short", date:"2026-11-05", postedAt:"2026-11-05", x:XS("2118255978160562613"), check:true },
+
+    { no:20, id:"tapnow1man", journey:false, client:"TapNow", title:"1万クレジットで学んだこと", sub:"メイキング", genre:"making", date:"2026-08-25", postedAt:"2026-08-25", x:XS("2092211671926546611"), learned:"The First Page の制作で学んだことを共有する", check:true, biz:"tutorial", bizText:[["解説した内容", "MV「The First Page」を題材に、ツールでの制作の流れを解説した動画です。演奏と映像を合わせる「演奏シンク」で学んだ6つのことを、投稿の本文にまとめて共有しました。"]] },
+  { no:30, id:"modelcmp",   title:"モデル比較",           sub:"説明動画",   genre:"making", date:"2026-09-14", postedAt:"2026-09-14", x:XS("2099427724104503684"), learned:"リリックモーション" },
+  { no:38, id:"treatment",  title:"キネティックタイポグラフィー", sub:"TapNow CPP 第三弾", genre:"making", client:"TapNow", date:"2026-09-29", postedAt:"2026-09-29", x:XS("2104902137394430125"), learned:"キネティックタイポグラフィー", biz:"tutorial", bizText:[["解説した内容", "ツールの機能を紹介しながら一緒に学んでいくシリーズの初回です。動画作りの土台になる「トリートメント」（企画書）の作り方を、キネティックタイポグラフィーの映像で解説しました。"]] },
+  { no:39, id:"doudatte",   title:"どうだっていいじゃないか", sub:"リリック MV の半自動化（TapNow CPP 第四弾）", genre:"making", client:"TapNow", date:"2026-09-30", postedAt:"2026-10-02", x:XS("2105829996359299218"), learned:"ワークフローの自動化", tools:["TapNow","MiniMax H3"], biz:"tutorial", bizText:[["解説した内容", "ツールの機能を紹介するシリーズの第4弾です。リリック MV の制作を半自動化するワークフローを紹介しました。好きな曲を手早く MV にできるよう、歌詞を入れ替えるだけで作り直せる流れを組んでいます。"]] },
+  { no:43, id:"cinemap",    title:"はじめてのプレビズ",     sub:"CineMap", client:"TapNow",   genre:"making", date:"2026-10-15", postedAt:"2026-10-15", x:XS("2110690438361620957"), learned:"プレビズ動画を作る ①", biz:"tool", bizText:[["依頼の概要", "ツールのキャンペーンで、3D の空間でカメラや車の動きを組み立てる「プレビズ」の機能を活かした、短い映像の依頼です。プレビズで決めた動きが、そのまま実写風の映像になることを伝えるのが狙いでした。"], ["どう応えたか", "結婚式に遅れそうな新郎新婦が、にぎやかな街を猛スピードで走り抜ける、車内の25秒のワンカットにしました。新郎が運転し、ウェディングドレスの新婦は天井の取っ手にしがみついたまま。「なんでこの2人がこんな運転を？」という可笑しさと、ドレスがどんどん乱れていく様子が見せ場です。投稿の動画は、完成した映像のあとに、プレビズを組んだ画面、プレビズと完成品を左右に並べた比較へと続け、決めた動きがそのまま映像になったことが一目で分かるようにしました。"]] },
+  { no:45, id:"recast", thumb:"media/thumbs/recast.jpg",     title:"Recast",              sub:"メイキング", genre:"making", client:"Pollo AI", date:"2026-10-21", postedAt:"2026-10-21", x:XS("2112829096308977872"), learned:"プレビズ動画を作る ②", biz:"tool", bizText:[["依頼の概要", "動画の中の人物を、別の人物に丸ごと差し替える機能の PR 動画の依頼です（横長、15秒以上）。"], ["どう応えたか", "差し替える前の人物を、顔のない黒いモーションキャプチャーのスーツを着た筋肉の男にしました。この男が、手持ちカメラの長回し風のディスコの MV で、可愛く、くねくねとセクシーに踊ります。おしゃれなのに筋肉の男がやるから笑える。その動画を白いドレスの女性に差し替え、結婚式の二次会のダンスフロアで踊る本編にしました。冒頭は差し替える前を数秒流し、画面に入ってきた女の子が「これが本編じゃないですよー！」と止まった画面に飛び込んで本編へ。最後に差し替えの前と後を左右に並べ、違いが一目で分かるようにしています。"]] },
+  { no:48, id:"ringovoice", lib:false, thumbFit:"contain", thumb:"media/thumbs/ringovoice.jpg", journey:false, title:"リンゴ経済学の台詞の作り方", sub:"説明動画", genre:"making", date:"2026-10-27", postedAt:"2026-10-27", x:XS("2115030269963198594"), learned:"台詞の音声の作り方を5つにまとめる" },
+  { no:55, id:"safari", thumb:"media/thumbs/safari.jpg",     title:"終電サファリ 溢れる夜行性", sub:"PV",     genre:"making", client:"Pollo AI", date:"2026-11-09", postedAt:"2026-11-10", x:XS("2120116525080461746"), learned:"ダンスモーションのプレビズ", biz:"tool", bizText:[["依頼の概要", "AI でキャラクターを作る機能と、動画の中の人物を別のキャラクターに差し替える機能。この2つを組み合わせる魅力を伝える、ダンス動画の依頼です。"], ["どう応えたか", "「人はみんな本能では動物。終電を逃すと、全員が夜行性になる」をテーマに、オリジナルの曲を作りました。キャラクターを作る機能で、狼・カエル・さる・とり・いぬ・ねこ・虫の7体の二足歩行の動物を作り、頭が球体の人形で振り付けの下書きを作ってから、差し替えの機能で7体と背景に置き換えています。ダンスはユニゾンからフォーメーション、ソロへと展開し、区切りごとに背景を変えました。画面に映るのは動物でも、本当は終電を逃した私たち。人が本性の動物に「キャストし直される」ことを、機能の意味そのものに重ねています。返信の欄には、人形から差し替えた後までを比べる解説の動画も添えました。"]] },
+  { no:56, id:"kani", bizOrder:9, thumbFit:"contain", thumb:"media/thumbs/kani.jpg",       title:"カニ CM",              sub:"30秒 CM",   genre:"making", client:"CM", date:"2026-11-12", postedAt:"2026-11-12", x:XS("2120833083578753050"), learned:"CM の構成", biz:"tool", bizText:[["依頼の概要", "通販の会社が募集した、AI で作る CM のコンテストへの応募作です。訳ありの大きなズワイガニの脚のセットの魅力が伝わり、その会社の商品だと分かる30秒ほどの CM が課題でした。実物より大きく・多く見せない、公式にない訳ありの理由を付けない、といった広告の決まりを守ることも条件です。"], ["どう応えたか", "実家を離れて暮らす20〜30代に「今年の年末は、このカニを送って会いに行こう」と思ってもらうことを狙い、「親には贈り物、子には会いに行く口実」をコンセプトにしました。昔ながらの通販の CM で始まり、画が引くとスマホの縦型の広告だったと分かる導入です。20年前と今年の食卓を同じ構図で並べ、カニを渡す向きだけを、母から娘へ、娘から母へと入れ替えました。カニが映る時間を全体の2割以上にし、「ポンと折ればスポッと抜ける」売りを動作で見せ、冷凍のまま実家で待っていられることも話の中で伝えています。"]] },
+  { no:57, id:"burube", lib:false, thumb:"media/thumbs/burube.jpg?v=2", journey:false,     title:"ぶるべ",               sub:"Creative 2.0", genre:"making", client:"TapNow", date:"2026-11-14", postedAt:"2026-11-14", x:XS("2121502296098136331"), biz:"tool", bizText:[["依頼の概要", "ツールの新しいバージョンの先行体験キャンペーンで、ベータ版を実際に使っている画面を見せる動画の依頼です。声で話しかけて指示する機能、一言で横・縦・正方形の動画を作り分ける機能、曲のリズムに合わせて自動で編集する機能などを、完成した映像だけでなく、作っている過程ごと伝えることが条件でした。"], ["どう応えたか", "「声で頼むだけで MV を作ってみた」を切り口にしました。自作の曲とキャラクターの設定画だけを渡し、「この曲が一番伝えたいことを1文決めて、それが伝わる MV を作って」と声で頼むところから始めます。AI が演出のノートとショットリストを書き、背景を作り、エラーも一言で直し、横・正方形・縦の3本を作り、14カットを曲の拍で切り替えるまでを、日本語と英語の字幕つきの早回しで見せました。そのあとに完成した MV を全編流し、おまけとして、約2分話しただけで一発で作った別の版も入れています。"]] },
+
+    { no:49, id:"eimi", libShelf:"キャラクター紹介", thumb:"media/thumbs/eimi.jpg", journey:false,       title:"エイミ",               sub:"音楽監修",   genre:"short", date:"2026-11-02", postedAt:"2026-11-02", x:XS("2116953542162534437"), learned:"4カットのループで人物を紹介する", check:true },
+
+  ];
+
+window.GENRES = {
+  "mv":     { label:"Music Video",    ja:"ミュージックビデオ" },
+  "anime":  { label:"Original Anime", ja:"オリジナルアニメ" },
+  "short":  { label:"Short",          ja:"ショート動画" },
+  "making": { label:"Making",         ja:"メイキング映像" },
+  "music":  { label:"Music",          ja:"楽曲提供" }
+};

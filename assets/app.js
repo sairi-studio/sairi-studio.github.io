@@ -310,7 +310,16 @@
       const g = document.createElement("div"); g.className = "lib-grid";
       items.forEach(w => g.append(tile(w))); lib.append(g); return;
     }
-    SHELVES.forEach(s => {
+    const CH = S.chars || [];
+    const shelvesAll = CH.length ? [...SHELVES.filter(x => x.t !== "キャラクター紹介"), { t: "キャラクター紹介", chars: CH }] : SHELVES;
+    shelvesAll.forEach(s => {
+      if (s.chars) {
+        const row = document.createElement("section"); row.className = "shelf";
+        row.innerHTML = `<div class="shelf__head"><h3>${s.t}</h3><span class="mono">${s.chars.length}</span></div><div class="shelf__row"></div>`;
+        s.chars.forEach(c => $(".shelf__row", row).insertAdjacentHTML("beforeend",
+          `<div class="tile char-tile"><div class="card__media" style="--poster:url(${new URL(c.img, location.href).href})"><img src="${c.img}" alt="${c.name}" loading="lazy"></div><div class="card__meta"><div><h3 class="card__title">${c.name}</h3><p class="card__sub">${c.note || ""}</p></div></div></div>`));
+        lib.append(row); return;
+      }
       let items = LIB.filter(s.f).sort(newest);
       if (s.max) items = items.slice(0, s.max);
       if (!items.length && !s.empty) return;

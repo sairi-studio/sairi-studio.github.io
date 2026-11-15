@@ -16,7 +16,11 @@ window.SITE = {
   },
 
     pickup: ["ringo", "daijobanai", "mousou", "firstpage", "lasthome"],
-    pickupNotes: {
+      chars: [
+    { id:"sairi", name:"さいり", note:"Sairi のアイコンのキャラクター", img:"media/chars/sairi.jpg" },
+    { id:"atari", name:"長雲あたり", note:"オリジナルキャラクター", img:"media/chars/atari.jpg" }
+  ],
+  pickupNotes: {
     ringo:      "初めて制作したオリジナルアニメ",
     daijobanai: "アニメ系ミュージックビデオ 第1弾",
     mousou:     "アニメ系ミュージックビデオ 第2弾",

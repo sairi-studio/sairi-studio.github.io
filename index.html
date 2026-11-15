@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=65">
+<link rel="stylesheet" href="assets/style.css?v=66">
 </head>
 <body class="is-loading">
 
@@ -171,13 +171,35 @@
     </div>
 
     <details class="making">
-      <summary><span class="mono">MAKING OF</span> このサイトの作り方</summary>
+      <summary><span class="mono">MAKING OF</span> このサイトの作り方（AI で作る5ステップ）</summary>
       <div class="making__body">
-        <p>このサイトは、映像制作と同じ AI のチームで作っています。<b>Claude Code</b> が構成と設計とコードを書き、<b>Codex</b> が全作品から音ありのプレビューを切り出しました。</p>
-        <ol>
-          <li>作品の情報は1つのデータファイル。チャットで「おすすめを入れ替えて」と言うと、その並びが書き換わります。</li>
-          <li>トップの映像は WebGL のシェーダーで、マウスに合わせて色のずれと粒子を足しています。</li>
-          <li>右下のタイムコードは、ページのスクロール量を 24fps の映像の時間に置き換えたものです。</li>
+        <p>このサイトは、コードを1行も自分で書かずに、AI と会話しながら作りました。使ったのは <b>Claude Code</b>（Claude のデスクトップアプリ）と、動画の切り出しを任せた <b>Codex</b> です。これから自分のポートフォリオを作る方の参考になればうれしいです。</p>
+        <ol class="making__steps">
+          <li>
+            <b>目的と見せる順番を、言葉で伝える</b>
+            <p>デザインより先に「だれに、何を感じてほしいか」を話しました。決めたのは、見せる順番（実績 → おすすめ → 学びの年表 → 自己紹介 → 作品一覧）と、企業の方には別のページを用意することです。</p>
+            <q>X から初めて来た人がファンになるような、動きのあるポートフォリオを作りたい。作品一覧は配信サービスみたいに、ジャンルのタブで見られるようにしたい</q>
+          </li>
+          <li>
+            <b>自分の投稿を、AI に一覧にしてもらう</b>
+            <p>X の設定から「データのアーカイブ」をダウンロードして渡すと、投稿の日付・本文・リンクを読み取って、番号付きの一覧を作ってくれます。あとは番号で「載せる・外す」「どのジャンルか」「何を学んだか」を伝えるだけです。</p>
+            <q>1、2、5番は外して。3、4、9番はミュージックビデオ、35、47番はオリジナルアニメ</q>
+          </li>
+          <li>
+            <b>動画の切り抜きは、別の AI に任せる</b>
+            <p>カーソルを重ねると流れる約10秒の動画と、トップの映像は、Codex に作ってもらいました。「どの作品の、何秒から」を伝えると、軽い動画に書き出してくれます。</p>
+            <q>だいじょばないは 2:40 から、泣いているところを。First Page は 8 秒から</q>
+          </li>
+          <li>
+            <b>ブラウザで見ながら、会話で直す</b>
+            <p>作ってもらったページを実際に見て、気になったところをそのまま言葉で伝えます。ここが一番長く、何十回も往復しました。色はスタジオロゴとキャラクターの色に合わせ、走り回るちびキャラの絵も AI で作っています。</p>
+            <q>横にスクロールするとバグっているみたいに見える。縦の年表にして、閉じておけるようにして</q>
+          </li>
+          <li>
+            <b>公開して、URL をプロフィールに貼る</b>
+            <p>無料の GitHub Pages で公開しました。GitHub のアカウント作りとサインインだけは自分で行い、ファイルの置き場所づくりや送る作業は AI に任せています。公開したあとも、チャットで「ここを直して」と言うと1分ほどで反映されます。</p>
+            <q>GitHub ページって何ですか？ ……公開に進んでください</q>
+          </li>
         </ol>
       </div>
     </details>
@@ -204,12 +226,12 @@
   </div>
 </footer>
 
-<script src="data/site.js?v=65"></script>
-<script src="data/works.js?v=65"></script>
-<script src="data/journey.js?v=65"></script>
-<script src="assets/gl.js?v=65"></script>
-<script src="assets/water.js?v=65"></script>
-<script src="assets/app.js?v=65"></script>
-<script src="assets/fx.js?v=65"></script>
+<script src="data/site.js?v=66"></script>
+<script src="data/works.js?v=66"></script>
+<script src="data/journey.js?v=66"></script>
+<script src="assets/gl.js?v=66"></script>
+<script src="assets/water.js?v=66"></script>
+<script src="assets/app.js?v=66"></script>
+<script src="assets/fx.js?v=66"></script>
 </body>
 </html>

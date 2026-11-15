@@ -783,3 +783,18 @@ html.has-inapp .dock{bottom:96px}
 .card.is-buffering .card__spin{opacity:1}
 .card.is-paused .card__spin{opacity:0}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+.char-tile .card__media{background:var(--poster) center/cover;cursor:default}
+.char-tile .card__media::before{content:"";position:absolute;inset:0;backdrop-filter:blur(22px) brightness(.55)}
+.char-tile .card__media::after{display:none}
+.char-tile .card__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
+.char-tile .card__sub{display:block!important}
+
+.making__steps{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:14px;counter-reset:m}
+.making__steps li{counter-increment:m;position:relative;padding:16px 18px 16px 58px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.making__steps li::before{content:counter(m);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--pink);color:#fff;font-family:var(--round);font-weight:600;display:flex;align-items:center;justify-content:center}
+.making__steps b{display:block;color:var(--fg);font-size:15px}
+.making__steps p{margin:6px 0 0;font-size:13.5px;line-height:1.85}
+.making__steps q{display:block;margin-top:10px;padding:8px 12px;border-left:3px solid var(--pink);background:#FFF0F5;font-size:12.5px;color:var(--fg);quotes:none}
+.making__steps q::before{content:"指示の例：";font-weight:700;color:var(--pink-deep)}
+.making__body{max-width:60em}

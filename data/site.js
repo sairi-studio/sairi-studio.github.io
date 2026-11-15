@@ -18,7 +18,7 @@ window.SITE = {
     pickup: ["ringo", "daijobanai", "mousou", "firstpage", "lasthome"],
       chars: [
     { id:"sairi", name:"さいり", note:"Sairi のアイコンのキャラクター", img:"media/chars/sairi.jpg" },
-    { id:"atari", name:"長雲あたり", note:"オリジナルキャラクター", img:"media/chars/atari.jpg" }
+    { id:"atari", name:"長雲あたり", note:"オリジナルキャラクター", img:"media/chars/nagakumo-atari.jpg" }
   ],
   pickupNotes: {
     ringo:      "初めて制作したオリジナルアニメ",
